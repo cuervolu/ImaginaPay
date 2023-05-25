@@ -1,0 +1,79 @@
+# Visual Studio files
+.vs/
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.cache
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# NuGet packages
+packages/
+
+# Windows-specific files
+Thumbs.db
+Desktop.ini
+
+# Entity Framework specific files
+*.edmx.diagram
+*.edmx
+*.tt
+*.Context.cs
+*.Designer.cs
+*.edmx.sql
+
+# Oracle specific files
+*.ora
+*.trc
+*.log
+*.oad
+*.obr
+*.oca
+*.oci
+*.oradata
+*.core
+
+# Oracle Entity Framework specific files
+*.ssdl
+*.msl
+*.csdl
+
+# IDE files
+*.sln.docstates
+
+# Visual Studio code coverage results
+*.coverage
+*.coveragexml
+
+# Test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.testsettings
+
+# Windows Store app package directories and files
+AppPackages/
+BundleArtifacts/
+Package.StoreAssociation.xml
+_Packaging/
+
+# Others
+ReSharper/
+*.vshost.exe
+*.userprefs
+*.[Cc]ache
+*.dll.config
+*.tmp
+*.bak
+*.dbmdl
+*.dbproj.schemaview
