@@ -14,6 +14,12 @@ namespace DataAccess.Models
     
     public partial class METODO_PAGO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public METODO_PAGO()
+        {
+            this.TRANSACCION = new HashSet<TRANSACCION>();
+        }
+    
         public long ID { get; set; }
         public string METODO_NOMBRE { get; set; }
         public string TARJETA_NUMERO { get; set; }
@@ -24,5 +30,7 @@ namespace DataAccess.Models
         public long USUARIO_ID { get; set; }
     
         public virtual USUARIO USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TRANSACCION> TRANSACCION { get; set; }
     }
 }

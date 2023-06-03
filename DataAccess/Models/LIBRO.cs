@@ -30,12 +30,12 @@ namespace DataAccess.Models
         public string EDITORIAL { get; set; }
         public decimal PRECIO_UNITARIO { get; set; }
         public long CANTIDAD_DISPONIBLE { get; set; }
+        public string THUMBNAIL { get; set; }
         public string PORTADA { get; set; }
         public Nullable<System.DateTime> FECHA_PUBLICACION { get; set; }
         public string CATEGORIA { get; set; }
         public string ISBN { get; set; }
         public string SLUG { get; set; }
-        public string THUMBNAIL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DETALLE_CARRITO> DETALLE_CARRITO { get; set; }

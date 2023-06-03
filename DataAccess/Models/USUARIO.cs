@@ -17,6 +17,7 @@ namespace DataAccess.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public USUARIO()
         {
+            this.AUTHTOKEN_TOKEN = new HashSet<AUTHTOKEN_TOKEN>();
             this.CARRITO = new HashSet<CARRITO>();
             this.DJANGO_ADMIN_LOG = new HashSet<DJANGO_ADMIN_LOG>();
             this.ENVIO = new HashSet<ENVIO>();
@@ -24,6 +25,7 @@ namespace DataAccess.Models
             this.MANTENIMIENTO1 = new HashSet<MANTENIMIENTO>();
             this.METODO_PAGO = new HashSet<METODO_PAGO>();
             this.PEDIDO = new HashSet<PEDIDO>();
+            this.TRANSACCION = new HashSet<TRANSACCION>();
             this.USUARIO_GROUPS = new HashSet<USUARIO_GROUPS>();
             this.USUARIO_USER_PERMISSIONS = new HashSet<USUARIO_USER_PERMISSIONS>();
         }
@@ -44,6 +46,8 @@ namespace DataAccess.Models
         public Nullable<long> DIRECCION_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AUTHTOKEN_TOKEN> AUTHTOKEN_TOKEN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CARRITO> CARRITO { get; set; }
         public virtual DIRECCION DIRECCION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -58,6 +62,8 @@ namespace DataAccess.Models
         public virtual ICollection<METODO_PAGO> METODO_PAGO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PEDIDO> PEDIDO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TRANSACCION> TRANSACCION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO_GROUPS> USUARIO_GROUPS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
