@@ -29,7 +29,7 @@ namespace ws_ImaginaPay
     {
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Xml)] // Establecer el formato de respuesta en XML
-        public string CreatePayment(decimal total, long pedido_id, long metodo_pago_id, string usuario_rut)
+        public string CreatePayment(decimal total, long pedido_id, long metodo_pago_id, long usuario_id)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace ws_ImaginaPay
                     // Obtener el Pedido, MétodoPago y Usuario correspondientes a los IDs proporcionados
                     PEDIDO pedido = dbContext.PEDIDO.FirstOrDefault(p => p.ID_PEDIDO == pedido_id);
                     METODO_PAGO metodoPago = dbContext.METODO_PAGO.FirstOrDefault(mp => mp.ID == metodo_pago_id);
-                    USUARIO usuario = dbContext.USUARIO.FirstOrDefault(u => u.RUT == usuario_rut);
+                    USUARIO usuario = dbContext.USUARIO.FirstOrDefault(u => u.ID == usuario_id);
 
                     if (pedido != null && metodoPago != null && usuario != null)
                     {
