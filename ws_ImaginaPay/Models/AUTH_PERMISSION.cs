@@ -7,26 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AUTH_GROUP
+    public partial class AUTH_PERMISSION
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AUTH_GROUP()
+        public AUTH_PERMISSION()
         {
             this.AUTH_GROUP_PERMISSIONS = new HashSet<AUTH_GROUP_PERMISSIONS>();
-            this.USUARIO_GROUPS = new HashSet<USUARIO_GROUPS>();
+            this.USUARIO_USER_PERMISSIONS = new HashSet<USUARIO_USER_PERMISSIONS>();
         }
     
         public long ID { get; set; }
         public string NAME { get; set; }
+        public long CONTENT_TYPE_ID { get; set; }
+        public string CODENAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AUTH_GROUP_PERMISSIONS> AUTH_GROUP_PERMISSIONS { get; set; }
+        public virtual DJANGO_CONTENT_TYPE DJANGO_CONTENT_TYPE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIO_GROUPS> USUARIO_GROUPS { get; set; }
+        public virtual ICollection<USUARIO_USER_PERMISSIONS> USUARIO_USER_PERMISSIONS { get; set; }
     }
 }

@@ -7,28 +7,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class DIRECCION
+    public partial class PEDIDO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DIRECCION()
+        public PEDIDO()
         {
+            this.DETALLE_PEDIDO = new HashSet<DETALLE_PEDIDO>();
             this.ENVIO = new HashSet<ENVIO>();
-            this.USUARIO = new HashSet<USUARIO>();
+            this.TRANSACCION = new HashSet<TRANSACCION>();
         }
     
-        public long ID_DIRECCION { get; set; }
-        public string DIRECCION1 { get; set; }
-        public long COMUNA_ID { get; set; }
+        public long ID_PEDIDO { get; set; }
+        public Nullable<System.DateTime> FECHA_PEDIDO { get; set; }
+        public Nullable<System.DateTime> FECHA_ENTREGA_ESTIMADA { get; set; }
+        public string ESTADO_PEDIDO { get; set; }
+        public long MONTO_TOTAL { get; set; }
+        public long CLIENTE_ID { get; set; }
     
-        public virtual COMUNA COMUNA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DETALLE_PEDIDO> DETALLE_PEDIDO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ENVIO> ENVIO { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIO> USUARIO { get; set; }
+        public virtual ICollection<TRANSACCION> TRANSACCION { get; set; }
     }
 }

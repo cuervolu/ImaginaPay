@@ -7,29 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AUTH_PERMISSION
+    public partial class DJANGO_CONTENT_TYPE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AUTH_PERMISSION()
+        public DJANGO_CONTENT_TYPE()
         {
-            this.AUTH_GROUP_PERMISSIONS = new HashSet<AUTH_GROUP_PERMISSIONS>();
-            this.USUARIO_USER_PERMISSIONS = new HashSet<USUARIO_USER_PERMISSIONS>();
+            this.AUTH_PERMISSION = new HashSet<AUTH_PERMISSION>();
+            this.DJANGO_ADMIN_LOG = new HashSet<DJANGO_ADMIN_LOG>();
         }
     
         public long ID { get; set; }
-        public string NAME { get; set; }
-        public long CONTENT_TYPE_ID { get; set; }
-        public string CODENAME { get; set; }
+        public string APP_LABEL { get; set; }
+        public string MODEL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AUTH_GROUP_PERMISSIONS> AUTH_GROUP_PERMISSIONS { get; set; }
-        public virtual DJANGO_CONTENT_TYPE DJANGO_CONTENT_TYPE { get; set; }
+        public virtual ICollection<AUTH_PERMISSION> AUTH_PERMISSION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIO_USER_PERMISSIONS> USUARIO_USER_PERMISSIONS { get; set; }
+        public virtual ICollection<DJANGO_ADMIN_LOG> DJANGO_ADMIN_LOG { get; set; }
     }
 }

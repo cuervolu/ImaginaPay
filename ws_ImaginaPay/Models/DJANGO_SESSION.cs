@@ -7,18 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class USUARIO_GROUPS
+    public partial class DJANGO_SESSION
     {
-        public long ID { get; set; }
-        public long USUARIO_ID { get; set; }
-        public long GROUP_ID { get; set; }
-    
-        public virtual AUTH_GROUP AUTH_GROUP { get; set; }
-        public virtual USUARIO USUARIO { get; set; }
+        public string SESSION_KEY { get; set; }
+        public string SESSION_DATA { get; set; }
+        public System.DateTime EXPIRE_DATE { get; set; }
     }
 }

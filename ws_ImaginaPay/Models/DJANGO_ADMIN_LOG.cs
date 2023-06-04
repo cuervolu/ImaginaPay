@@ -7,16 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class DJANGO_MIGRATIONS
+    public partial class DJANGO_ADMIN_LOG
     {
         public long ID { get; set; }
-        public string APP { get; set; }
-        public string NAME { get; set; }
-        public System.DateTime APPLIED { get; set; }
+        public System.DateTime ACTION_TIME { get; set; }
+        public string OBJECT_ID { get; set; }
+        public string OBJECT_REPR { get; set; }
+        public long ACTION_FLAG { get; set; }
+        public string CHANGE_MESSAGE { get; set; }
+        public Nullable<long> CONTENT_TYPE_ID { get; set; }
+        public long USER_ID { get; set; }
+    
+        public virtual DJANGO_CONTENT_TYPE DJANGO_CONTENT_TYPE { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

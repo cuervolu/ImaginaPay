@@ -7,18 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AUTH_GROUP_PERMISSIONS
+    public partial class AUTHTOKEN_TOKEN
     {
-        public long ID { get; set; }
-        public long GROUP_ID { get; set; }
-        public long PERMISSION_ID { get; set; }
+        public string KEY { get; set; }
+        public System.DateTime CREATED { get; set; }
+        public long USER_ID { get; set; }
     
-        public virtual AUTH_GROUP AUTH_GROUP { get; set; }
-        public virtual AUTH_PERMISSION AUTH_PERMISSION { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

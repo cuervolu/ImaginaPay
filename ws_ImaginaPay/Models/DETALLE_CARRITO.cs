@@ -7,17 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AUTHTOKEN_TOKEN
+    public partial class DETALLE_CARRITO
     {
-        public string KEY { get; set; }
-        public System.DateTime CREATED { get; set; }
-        public long USER_ID { get; set; }
+        public long ID { get; set; }
+        public long CANTIDAD { get; set; }
+        public decimal PRECIO_TOTAL { get; set; }
+        public long CARRITO_ID { get; set; }
+        public long LIBRO_ID { get; set; }
     
-        public virtual USUARIO USUARIO { get; set; }
+        public virtual CARRITO CARRITO { get; set; }
+        public virtual LIBRO LIBRO { get; set; }
     }
 }

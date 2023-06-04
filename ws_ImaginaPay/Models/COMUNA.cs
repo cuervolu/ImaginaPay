@@ -7,24 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class REGION
+    public partial class COMUNA
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public REGION()
+        public COMUNA()
         {
-            this.COMUNA = new HashSet<COMUNA>();
+            this.DIRECCION = new HashSet<DIRECCION>();
         }
     
-        public long ID_REGION { get; set; }
-        public string NOMBRE { get; set; }
-        public string NUMERO_ROMANO { get; set; }
+        public long ID_COMUNA { get; set; }
+        public string NOMBRE_COMUNA { get; set; }
+        public long REGION_ID { get; set; }
     
+        public virtual REGION REGION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<COMUNA> COMUNA { get; set; }
+        public virtual ICollection<DIRECCION> DIRECCION { get; set; }
     }
 }

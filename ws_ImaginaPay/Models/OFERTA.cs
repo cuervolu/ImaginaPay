@@ -7,20 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class DETALLE_CARRITO
+    public partial class OFERTA
     {
         public long ID { get; set; }
-        public long CANTIDAD { get; set; }
-        public decimal PRECIO_TOTAL { get; set; }
-        public long CARRITO_ID { get; set; }
+        public decimal DESCUENTO { get; set; }
+        public System.DateTime FECHA_INICIO { get; set; }
+        public System.DateTime FECHA_FIN { get; set; }
         public long LIBRO_ID { get; set; }
     
-        public virtual CARRITO CARRITO { get; set; }
         public virtual LIBRO LIBRO { get; set; }
     }
 }

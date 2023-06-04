@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,15 +44,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.21.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.21.9.0\lib\net462\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.21.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.21.9.0\lib\net462\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -67,6 +78,8 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
@@ -97,22 +110,127 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ImaginaPay.asmx" />
+    <Content Include="Models\LibreriaImaginaModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LibreriaImaginaModel.edmx</DependentUpon>
+      <LastGenOutput>LibreriaImaginaModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\LibreriaImaginaModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LibreriaImaginaModel.edmx</DependentUpon>
+      <LastGenOutput>LibreriaImaginaModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImaginaPay.asmx.cs">
       <DependentUpon>ImaginaPay.asmx</DependentUpon>
-      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\AUTHTOKEN_TOKEN.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AUTH_GROUP.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AUTH_GROUP_PERMISSIONS.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AUTH_PERMISSION.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CARRITO.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COMUNA.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DETALLE_CARRITO.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DETALLE_PEDIDO.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DIRECCION.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DJANGO_ADMIN_LOG.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DJANGO_CONTENT_TYPE.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DJANGO_MIGRATIONS.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DJANGO_SESSION.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ENVIO.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LibreriaImaginaModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibreriaImaginaModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LibreriaImaginaModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LibreriaImaginaModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibreriaImaginaModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LIBRO.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MANTENIMIENTO.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\METODO_PAGO.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OFERTA.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PEDIDO.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\REGION.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TRANSACCION.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TransaccionDTO.cs" />
+    <Compile Include="Models\USUARIO.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USUARIO_GROUPS.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USUARIO_USER_PERMISSIONS.cs">
+      <DependentUpon>LibreriaImaginaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="Models\LibreriaImaginaModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LibreriaImaginaModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\LibreriaImaginaModel.edmx.diagram">
+      <DependentUpon>LibreriaImaginaModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Oracle.DataAccess.Common.Configuration.Section.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Oracle.ManagedDataAccess.Client.Configuration.Section.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -121,11 +239,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{11558d2c-1a67-4708-85fb-40d1ca93ccfa}</Project>
-      <Name>DataAccess</Name>
-    </ProjectReference>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -157,11 +273,8 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
     <Error Condition="!Exists('..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

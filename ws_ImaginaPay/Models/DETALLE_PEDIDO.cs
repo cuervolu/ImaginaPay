@@ -7,23 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TRANSACCION
+    public partial class DETALLE_PEDIDO
     {
-        public long ID_TRANSACCION { get; set; }
-        public decimal TOTAL_TRANSACCION { get; set; }
+        public long ID_DETALLE_PEDIDO { get; set; }
+        public long CANTIDAD { get; set; }
+        public long PRECIO_UNITARIO { get; set; }
+        public Nullable<long> SUBTOTAL { get; set; }
+        public long LIBRO_ID { get; set; }
         public long PEDIDO_ID { get; set; }
-        public bool APROBADO { get; set; }
-        public System.DateTime FECHA { get; set; }
-        public long METODO_PAGO_ID { get; set; }
-        public long USUARIO_ID { get; set; }
     
-        public virtual METODO_PAGO METODO_PAGO { get; set; }
+        public virtual LIBRO LIBRO { get; set; }
         public virtual PEDIDO PEDIDO { get; set; }
-        public virtual USUARIO USUARIO { get; set; }
     }
 }

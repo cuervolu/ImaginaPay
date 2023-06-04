@@ -7,27 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class DJANGO_CONTENT_TYPE
+    public partial class METODO_PAGO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DJANGO_CONTENT_TYPE()
+        public METODO_PAGO()
         {
-            this.AUTH_PERMISSION = new HashSet<AUTH_PERMISSION>();
-            this.DJANGO_ADMIN_LOG = new HashSet<DJANGO_ADMIN_LOG>();
+            this.TRANSACCION = new HashSet<TRANSACCION>();
         }
     
         public long ID { get; set; }
-        public string APP_LABEL { get; set; }
-        public string MODEL { get; set; }
+        public string METODO_NOMBRE { get; set; }
+        public string TARJETA_NUMERO { get; set; }
+        public string TARJETA_NOMBRE_TITULAR { get; set; }
+        public System.DateTime FECHA_VENCIMIENTO { get; set; }
+        public System.DateTime CREADO_EN { get; set; }
+        public System.DateTime ACTUALIZADO_EN { get; set; }
+        public long USUARIO_ID { get; set; }
     
+        public virtual USUARIO USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AUTH_PERMISSION> AUTH_PERMISSION { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DJANGO_ADMIN_LOG> DJANGO_ADMIN_LOG { get; set; }
+        public virtual ICollection<TRANSACCION> TRANSACCION { get; set; }
     }
 }

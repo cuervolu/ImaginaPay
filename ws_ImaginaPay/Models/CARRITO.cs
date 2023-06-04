@@ -7,25 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class COMUNA
+    public partial class CARRITO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public COMUNA()
+        public CARRITO()
         {
-            this.DIRECCION = new HashSet<DIRECCION>();
+            this.DETALLE_CARRITO = new HashSet<DETALLE_CARRITO>();
         }
     
-        public long ID_COMUNA { get; set; }
-        public string NOMBRE_COMUNA { get; set; }
-        public long REGION_ID { get; set; }
+        public long ID_CARRITO { get; set; }
+        public long CANTIDAD { get; set; }
+        public long TOTAL_PAGAR { get; set; }
+        public System.DateTime FECHA_CREACION { get; set; }
+        public System.DateTime FECHA_MODIFICACION { get; set; }
+        public long USUARIO_ID { get; set; }
     
-        public virtual REGION REGION { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DIRECCION> DIRECCION { get; set; }
+        public virtual ICollection<DETALLE_CARRITO> DETALLE_CARRITO { get; set; }
     }
 }

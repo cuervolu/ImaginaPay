@@ -7,23 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class MANTENIMIENTO
+    public partial class TRANSACCION
     {
-        public long ID_MANTENIMIENTO { get; set; }
-        public System.DateTime FECHA_SOLICITUD { get; set; }
-        public string TIPO_MANTENIMIENTO { get; set; }
-        public string ESTADO_MANTENIMIENTO { get; set; }
-        public long CLIENTE_ID { get; set; }
-        public long LIBRO_ID { get; set; }
-        public long TECNICO_ID { get; set; }
+        public long ID_TRANSACCION { get; set; }
+        public decimal TOTAL_TRANSACCION { get; set; }
+        public long PEDIDO_ID { get; set; }
+        public bool APROBADO { get; set; }
+        public System.DateTime FECHA { get; set; }
+        public long METODO_PAGO_ID { get; set; }
+        public long USUARIO_ID { get; set; }
     
-        public virtual LIBRO LIBRO { get; set; }
+        public virtual METODO_PAGO METODO_PAGO { get; set; }
+        public virtual PEDIDO PEDIDO { get; set; }
         public virtual USUARIO USUARIO { get; set; }
-        public virtual USUARIO USUARIO1 { get; set; }
     }
 }

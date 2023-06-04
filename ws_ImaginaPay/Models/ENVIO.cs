@@ -7,15 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class DJANGO_SESSION
+    public partial class ENVIO
     {
-        public string SESSION_KEY { get; set; }
-        public string SESSION_DATA { get; set; }
-        public System.DateTime EXPIRE_DATE { get; set; }
+        public long ID_ENVIO { get; set; }
+        public Nullable<System.DateTime> FECHA_ENVIO { get; set; }
+        public long DIRECCION_ID { get; set; }
+        public long PEDIDO_ID { get; set; }
+        public long REPARTIDOR_ID { get; set; }
+    
+        public virtual DIRECCION DIRECCION { get; set; }
+        public virtual PEDIDO PEDIDO { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

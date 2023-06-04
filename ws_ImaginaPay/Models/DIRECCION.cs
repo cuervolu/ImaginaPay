@@ -7,30 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class METODO_PAGO
+    public partial class DIRECCION
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public METODO_PAGO()
+        public DIRECCION()
         {
-            this.TRANSACCION = new HashSet<TRANSACCION>();
+            this.ENVIO = new HashSet<ENVIO>();
+            this.USUARIO = new HashSet<USUARIO>();
         }
     
-        public long ID { get; set; }
-        public string METODO_NOMBRE { get; set; }
-        public string TARJETA_NUMERO { get; set; }
-        public string TARJETA_NOMBRE_TITULAR { get; set; }
-        public System.DateTime FECHA_VENCIMIENTO { get; set; }
-        public System.DateTime CREADO_EN { get; set; }
-        public System.DateTime ACTUALIZADO_EN { get; set; }
-        public long USUARIO_ID { get; set; }
+        public long ID_DIRECCION { get; set; }
+        public string DIRECCION1 { get; set; }
+        public long COMUNA_ID { get; set; }
     
-        public virtual USUARIO USUARIO { get; set; }
+        public virtual COMUNA COMUNA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TRANSACCION> TRANSACCION { get; set; }
+        public virtual ICollection<ENVIO> ENVIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO> USUARIO { get; set; }
     }
 }

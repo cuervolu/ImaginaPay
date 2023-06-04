@@ -7,21 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Models
+namespace ws_ImaginaPay.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class DETALLE_PEDIDO
+    public partial class USUARIO_USER_PERMISSIONS
     {
-        public long ID_DETALLE_PEDIDO { get; set; }
-        public long CANTIDAD { get; set; }
-        public long PRECIO_UNITARIO { get; set; }
-        public Nullable<long> SUBTOTAL { get; set; }
-        public long LIBRO_ID { get; set; }
-        public long PEDIDO_ID { get; set; }
+        public long ID { get; set; }
+        public long USUARIO_ID { get; set; }
+        public long PERMISSION_ID { get; set; }
     
-        public virtual LIBRO LIBRO { get; set; }
-        public virtual PEDIDO PEDIDO { get; set; }
+        public virtual AUTH_PERMISSION AUTH_PERMISSION { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }
