@@ -105,29 +105,34 @@ namespace ws_ImaginaPay
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Xml)]
-        public string GetPaymentDetails(string id)
+        public TransaccionDTO GetPaymentDetails(long id)
         {
             try
             {
                 using (var dbContext = new Entities())
                 {
-                    TRANSACCION transaccion = dbContext.TRANSACCION.FirstOrDefault(t => t.ID_TRANSACCION.Equals(id));
+                    TRANSACCION transaccion = dbContext.TRANSACCION.FirstOrDefault(t => t.ID_TRANSACCION == id);
 
                     if (transaccion != null)
                     {
-                        // Serializar el objeto de transacción en XML
-                        XmlSerializer serializer = new XmlSerializer(typeof(TRANSACCION));
-                        using (StringWriter writer = new StringWriter())
+                        TransaccionDTO transaccionDTO = new TransaccionDTO
                         {
-                            serializer.Serialize(writer, transaccion);
-                            return writer.ToString();
-                        }
+                            ID_TRANSACCION = transaccion.ID_TRANSACCION,
+                            TOTAL_TRANSACCION = transaccion.TOTAL_TRANSACCION,
+                            PEDIDO_ID = transaccion.PEDIDO_ID,
+                            APROBADO = transaccion.APROBADO,
+                            FECHA = transaccion.FECHA,
+                            METODO_PAGO_ID = transaccion.METODO_PAGO_ID,
+                            USUARIO_ID = transaccion.USUARIO_ID
+                        };
+
+                        return transaccionDTO;
                     }
                     else
                     {
                         ErrorDetails errorDetails = new ErrorDetails
                         {
-                            StatusCode = HttpStatusCode.BadRequest,
+                            StatusCode = HttpStatusCode.NotFound,
                             Message = "No se encontraron registros de la transacción indicada."
                         };
 
@@ -136,7 +141,7 @@ namespace ws_ImaginaPay
                         using (StringWriter writer = new StringWriter())
                         {
                             serializer.Serialize(writer, errorDetails);
-                            return writer.ToString();
+                            return null;
                         }
                     }
                 }
@@ -156,10 +161,12 @@ namespace ws_ImaginaPay
                 using (StringWriter writer = new StringWriter())
                 {
                     serializer.Serialize(writer, errorDetails);
-                    return writer.ToString();
+                    return null;
                 }
             }
         }
+
+
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Xml)]
