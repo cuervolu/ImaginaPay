@@ -19,7 +19,6 @@ namespace ws_ImaginaPay.Models
         {
             this.AUTHTOKEN_TOKEN = new HashSet<AUTHTOKEN_TOKEN>();
             this.CARRITO = new HashSet<CARRITO>();
-            this.DJANGO_ADMIN_LOG = new HashSet<DJANGO_ADMIN_LOG>();
             this.ENVIO = new HashSet<ENVIO>();
             this.MANTENIMIENTO = new HashSet<MANTENIMIENTO>();
             this.MANTENIMIENTO1 = new HashSet<MANTENIMIENTO>();
@@ -50,8 +49,6 @@ namespace ws_ImaginaPay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CARRITO> CARRITO { get; set; }
         public virtual DIRECCION DIRECCION { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DJANGO_ADMIN_LOG> DJANGO_ADMIN_LOG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ENVIO> ENVIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

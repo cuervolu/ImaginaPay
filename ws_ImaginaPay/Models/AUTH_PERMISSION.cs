@@ -28,7 +28,6 @@ namespace ws_ImaginaPay.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AUTH_GROUP_PERMISSIONS> AUTH_GROUP_PERMISSIONS { get; set; }
-        public virtual DJANGO_CONTENT_TYPE DJANGO_CONTENT_TYPE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO_USER_PERMISSIONS> USUARIO_USER_PERMISSIONS { get; set; }
     }

@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web.Script.Services;
 using System.Web.Services;
-using System.Xml;
-using System.Xml.Serialization;
 using ws_ImaginaPay.Models;
 
 namespace ws_ImaginaPay
@@ -25,11 +21,20 @@ namespace ws_ImaginaPay
         public string StackTrace { get; set; }
     }
 
+    public class CustomSoapException : Exception
+    {
+        public ErrorDetails ErrorDetails { get; }
+
+        public CustomSoapException(string message, ErrorDetails errorDetails) : base(message)
+        {
+            ErrorDetails = errorDetails;
+        }
+    }
+
     public class ImaginaPay : System.Web.Services.WebService
     {
         [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Xml)] // Establecer el formato de respuesta en XML
-        public string CreatePayment(decimal total, long pedido_id, long metodo_pago_id, long usuario_id)
+        public int CreatePayment(decimal total, long pedido_id, long metodo_pago_id, long usuario_id)
         {
             try
             {
@@ -54,16 +59,8 @@ namespace ws_ImaginaPay
                         dbContext.TRANSACCION.Add(transaccion);
                         dbContext.SaveChanges();
 
-                        // Crear una estructura XML para la respuesta SOAP
-                        XmlDocument responseXml = new XmlDocument();
-                        XmlElement rootElement = responseXml.CreateElement("CreatePaymentResponse");
-                        XmlElement statusElement = responseXml.CreateElement("Status");
-                        statusElement.InnerText = "Success";
-                        rootElement.AppendChild(statusElement);
-                        responseXml.AppendChild(rootElement);
-
                         // Convertir la estructura XML en una cadena para su retorno
-                        return responseXml.OuterXml;
+                        return 1;
                     }
                     else
                     {
@@ -73,13 +70,7 @@ namespace ws_ImaginaPay
                             Message = "No se encontraron los registros requeridos para crear la transacción."
                         };
 
-                        // Serializar el objeto de error en XML
-                        XmlSerializer serializer = new XmlSerializer(typeof(ErrorDetails));
-                        using (StringWriter writer = new StringWriter())
-                        {
-                            serializer.Serialize(writer, errorDetails);
-                            return writer.ToString();
-                        }
+                        throw new CustomSoapException(errorDetails.Message, errorDetails);
                     }
                 }
             }
@@ -92,19 +83,11 @@ namespace ws_ImaginaPay
                     ExceptionMessage = ex.Message,
                     StackTrace = ex.StackTrace
                 };
-
-                // Serializar el objeto de error en XML
-                XmlSerializer serializer = new XmlSerializer(typeof(ErrorDetails));
-                using (StringWriter writer = new StringWriter())
-                {
-                    serializer.Serialize(writer, errorDetails);
-                    return writer.ToString();
-                }
+                throw new CustomSoapException(errorDetails.Message, errorDetails);
             }
         }
 
         [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Xml)]
         public TransaccionDTO GetPaymentDetails(long id)
         {
             try
@@ -136,13 +119,7 @@ namespace ws_ImaginaPay
                             Message = "No se encontraron registros de la transacción indicada."
                         };
 
-                        // Serializar el objeto de error en XML
-                        XmlSerializer serializer = new XmlSerializer(typeof(ErrorDetails));
-                        using (StringWriter writer = new StringWriter())
-                        {
-                            serializer.Serialize(writer, errorDetails);
-                            return null;
-                        }
+                        throw new CustomSoapException(errorDetails.Message, errorDetails);
                     }
                 }
             }
@@ -156,20 +133,11 @@ namespace ws_ImaginaPay
                     StackTrace = ex.StackTrace
                 };
 
-                // Serializar el objeto de error en XML
-                XmlSerializer serializer = new XmlSerializer(typeof(ErrorDetails));
-                using (StringWriter writer = new StringWriter())
-                {
-                    serializer.Serialize(writer, errorDetails);
-                    return null;
-                }
+                throw new CustomSoapException(errorDetails.Message, errorDetails);
             }
         }
 
-
-
         [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Xml)]
         public List<TransaccionDTO> GetPaymentHistory(string user_rut)
         {
             try
@@ -204,13 +172,7 @@ namespace ws_ImaginaPay
                             Message = "No se encontraron transacciones para el usuario con RUT: " + user_rut
                         };
 
-                        // Serializar el objeto de error en XML
-                        XmlSerializer serializer = new XmlSerializer(typeof(ErrorDetails));
-                        using (StringWriter writer = new StringWriter())
-                        {
-                            serializer.Serialize(writer, errorDetails);
-                            return null;
-                        }
+                        throw new CustomSoapException(errorDetails.Message, errorDetails);
                     }
                 }
             }
@@ -223,14 +185,7 @@ namespace ws_ImaginaPay
                     ExceptionMessage = ex.Message,
                     StackTrace = ex.StackTrace
                 };
-
-                // Serializar el objeto de error en XML
-                XmlSerializer serializer = new XmlSerializer(typeof(ErrorDetails));
-                using (StringWriter writer = new StringWriter())
-                {
-                    serializer.Serialize(writer, errorDetails);
-                    return null;
-                }
+                throw new CustomSoapException(errorDetails.Message, errorDetails);
             }
         }
     }

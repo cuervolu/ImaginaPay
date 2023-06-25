@@ -12,10 +12,13 @@ namespace ws_ImaginaPay.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DJANGO_SESSION
+    public partial class TRANSACCIONES_SUCURSAL
     {
-        public string SESSION_KEY { get; set; }
-        public string SESSION_DATA { get; set; }
-        public System.DateTime EXPIRE_DATE { get; set; }
+        public long ID_TRANSACCION { get; set; }
+        public decimal TOTAL_TRANSACCION { get; set; }
+        public System.DateTime FECHA_TRANSACCION { get; set; }
+        public string USUARIO_RUT { get; set; }
+        public Nullable<long> METODO_PAGO_ID { get; set; }
+        public bool EFECTIVO { get; set; }
     }
 }

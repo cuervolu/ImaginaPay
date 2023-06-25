@@ -20,7 +20,9 @@ namespace ws_ImaginaPay.Models
         public string ESTADO_MANTENIMIENTO { get; set; }
         public long CLIENTE_ID { get; set; }
         public long LIBRO_ID { get; set; }
-        public long TECNICO_ID { get; set; }
+        public Nullable<long> TECNICO_ID { get; set; }
+        public string COMENTARIO { get; set; }
+        public string RESPUESTA { get; set; }
     
         public virtual LIBRO LIBRO { get; set; }
         public virtual USUARIO USUARIO { get; set; }
