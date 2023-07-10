@@ -19,6 +19,8 @@ namespace ws_ImaginaPay
         public string Message { get; set; }
         public string ExceptionMessage { get; set; }
         public string StackTrace { get; set; }
+        public string InnerExceptionMessage { get; set; }
+        public string InnerExceptionStackTrace { get; set; }
     }
 
     public class CustomSoapException : Exception
@@ -59,7 +61,6 @@ namespace ws_ImaginaPay
                         dbContext.TRANSACCION.Add(transaccion);
                         dbContext.SaveChanges();
 
-                        // Convertir la estructura XML en una cadena para su retorno
                         return 1;
                     }
                     else
@@ -187,6 +188,53 @@ namespace ws_ImaginaPay
                 };
                 throw new CustomSoapException(errorDetails.Message, errorDetails);
             }
+        }
+
+        [WebMethod]
+        public string CreateBranchPayment(string user_rut, decimal total)
+        {
+            try
+            {
+                using (TransaccionEntities dbContext = new TransaccionEntities())
+                {
+                    TRANSACCIONES transaccion = new TRANSACCIONES
+                    {
+                        // Asigna los valores a las propiedades de la nueva transacción
+                        USUARIO_RUT = user_rut,
+                        TOTAL_TRANSACCION = total,
+                    };
+
+                    // Agrega la nueva transacción al contexto de la base de datos
+                    dbContext.TRANSACCIONES.Add(transaccion);
+
+
+                    // Guarda los cambios en la base de datos
+                    dbContext.SaveChanges();
+
+                    // Puedes retornar un mensaje de éxito o el ID de la nueva transacción, por ejemplo:
+                    return "Transacción creada con éxito. ID: " + transaccion.ID_TRANSACCION;
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorDetails errorDetails = new ErrorDetails
+                {
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    Message = "Se produjo un error al crear el pago de: " + user_rut,
+                    ExceptionMessage = ex.Message,
+                    StackTrace = ex.StackTrace
+                };
+
+                // Obtener la excepción interna si está disponible
+                if (ex.InnerException != null)
+                {
+                    errorDetails.InnerExceptionMessage = ex.InnerException.Message;
+                    errorDetails.InnerExceptionStackTrace = ex.InnerException.StackTrace;
+                }
+
+                throw new CustomSoapException(errorDetails.Message, errorDetails);
+            }
+
         }
     }
 }
